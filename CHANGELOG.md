@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dylanhitt/semantic-release-jira/compare/v1.1.0...v1.2.0) (2023-06-28)
+
+
+### Features
+
+* use eslint instead of eslint ([#6](https://github.com/dylanhitt/semantic-release-jira/issues/6)) ([517618a](https://github.com/dylanhitt/semantic-release-jira/commit/517618ae179230b90650be36d4a6d5040c833fda))
+
 # [1.1.0](https://github.com/dylanhitt/semantic-release-jira/compare/v1.0.0...v1.1.0) (2023-04-28)
 
 
