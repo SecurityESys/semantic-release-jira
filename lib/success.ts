@@ -8,6 +8,7 @@ import { makeAgileClient, makeVersion3Client } from './jira'
 import { DEFAULT_RELEASE_DESCRIPTION_TEMPLATE, DEFAULT_VERSION_TEMPLATE } from './types'
 import type { GenerateNotesContext, PluginConfig } from './types'
 import { escapeRegExp } from './util'
+import { AxiosError } from 'axios'
 
 export function getTickets (config: PluginConfig, context: GenerateNotesContext): string[] {
   let patterns: RegExp[] = []
@@ -102,19 +103,13 @@ async function editIssueFixVersions (config: PluginConfig, context: GenerateNote
     }
   } catch (err: any) {
     const allowedStatusCodes = [400, 404]
-    let { statusCode }: { statusCode: number } = err
-    if (typeof err === 'string') {
-      try {
-        const parsedErr = JSON.parse(err)
-        statusCode = parsedErr.statusCode
-      } catch (err) {
-        // it's not json :shrug:
-      }
+
+    if (err instanceof AxiosError && allowedStatusCodes.includes(err.response?.status ?? 422)) {
+      context.logger.warn(`Unable to update issue ${issueKey}. Error body: ${JSON.stringify(err.response?.data ?? 'no data')}`)
+      return
     }
-    if (!allowedStatusCodes.includes(statusCode)) {
-      throw err
-    }
-    context.logger.error(`Unable to update issue ${issueKey} statusCode: ${statusCode}`)
+
+    throw err
   }
 }
 
