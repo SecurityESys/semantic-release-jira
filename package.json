@@ -1,10 +1,10 @@
 {
-  "name": "@dylanhitt1/semantic-release-jira",
+  "name": "@securityesys/semantic-release-jira",
   "version": "1.2.0",
   "main": "dist/lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dylanhitt/semantic-release-jira.git"
+    "url": "git+https://github.com/SecurityESys/semantic-release-jira.git"
   },
   "publishConfig": {
     "access": "public"
@@ -42,10 +42,6 @@
     "typescript": "^4.4.2"
   },
   "description": "[**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to publish a jira release.",
-  "bugs": {
-    "url": "https://github.com/dylanhitt/semantic-release-jira/issues"
-  },
-  "homepage": "https://github.com/dylanhitt/semantic-release-jira#readme",
   "directories": {
     "lib": "lib",
     "test": "test"
