@@ -7,7 +7,6 @@ const p_limit_1 = (0, tslib_1.__importDefault)(require("p-limit"));
 const jira_1 = require("./jira");
 const types_1 = require("./types");
 const util_1 = require("./util");
-const axios_1 = require("axios");
 function getTickets(config, context) {
     let patterns = [];
     if (config.ticketRegex != null) {
@@ -91,7 +90,7 @@ async function editIssueFixVersions(config, context, jira, newVersionNames, rele
     }
     catch (err) {
         const allowedStatusCodes = [400, 404];
-        if (err instanceof axios_1.AxiosError && allowedStatusCodes.includes((_b = (_a = err.response) === null || _a === void 0 ? void 0 : _a.status) !== null && _b !== void 0 ? _b : 422)) {
+        if (allowedStatusCodes.includes((_b = (_a = err.response) === null || _a === void 0 ? void 0 : _a.status) !== null && _b !== void 0 ? _b : 422)) {
             context.logger.warn(`Unable to update issue ${issueKey}. Error body: ${JSON.stringify((_d = (_c = err.response) === null || _c === void 0 ? void 0 : _c.data) !== null && _d !== void 0 ? _d : 'no data')}`);
             return;
         }
